@@ -16,9 +16,9 @@ let tasks = [
       const actions_btn = document.createElement("div");
       actions_btn.classList = "actions-btn";
       const trashIcon = document.createElement("img");
-      trashIcon.src = "trash.svg";
+      trashIcon.src = "./images/trash.svg";
       const editIcon = document.createElement("img");
-      editIcon.src = "edit.svg";
+      editIcon.src = "./images/edit.svg";
       actions_btn.appendChild(trashIcon);
       actions_btn.appendChild(editIcon);
       const checkbox_taskName = document.createElement("div");
