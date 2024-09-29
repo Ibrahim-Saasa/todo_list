@@ -18,8 +18,8 @@
           <p class="title">TODO LIST</p>
           <div class="todo-input">
             <div class="search-input-container">
-              <input type="text" />
-              <img src="./images/search.svg" class="search"/>
+              <input type="text" id="search"/>
+              <img src="./images/search.svg" class="search" id="search-img"/>
             </div>
             <select>
               <option>All</option>
@@ -31,6 +31,16 @@
           <div class="todo-items"></div>
         </div>
         <button class="add-btn"><img src="./images/plus.png"></button>
+        <div class="layout hide">
+          <div class="content">
+            <p>NEW NOTE</p>
+            <input type="text" id="task_input" />
+            <div class="btn-container">
+              <button class="btn close">Cancel</button>
+              <button class="btn apply">Apply</button>
+            </div>
+          </div>
+        </div>
         <!-- <div class="todo-item">
           <div class="text-container">
             <input type="checkbox" />
