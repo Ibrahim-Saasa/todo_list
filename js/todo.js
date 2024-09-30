@@ -1,7 +1,9 @@
 let tasks = [
-    { name: "Clean the desk", id: 8488949, select: false },
-    { name: "Take the trash out", id: 9082490, select: false },
+    // { name: "Ahmed", id: 8488949, select: false },
+    // { name: "Take the trash out", id: 9082490, select: false },
   ];
+
+  import { showTasks } from "./fun.js";
   const todo_Items = document.querySelector(".todo-items");
   const layout = document.querySelector(".layout");
   const close_btn = document.querySelector(".close");
@@ -15,55 +17,7 @@ let tasks = [
   close_btn.addEventListener("click", () => {
     layout.classList.toggle("hide");
   });
-  function showTasks() {
-    todo_Items.innerHTML = "";
-  //   tasks.forEach((item) => {});
-  //   tasks.forEach(function (item) {});
-    tasks.forEach((task) => {
-      const item = document.createElement("div");
-    item.classList = "todo-item";
-    const checkbox = document.createElement("input");
-    checkbox.id = task.id;
-    checkbox.type = "checkbox";
-    const p = document.createElement("p");
-    p.textContent = task.name;
-      // create a div that containe the edit and delete button
-      const actions_btn = document.createElement("div");
-      actions_btn.classList = "actions-btn";
-      const trashIcon = document.createElement("img");
-      trashIcon.src = "./images/trash.svg";
-      trashIcon.id = "trash_icon";
-      trashIcon.addEventListener("click", () => {
-        deleteItem(task.id);
-      });
-      const editIcon = document.createElement("img");
-      editIcon.src = "./images/edit.svg";
-      editIcon.addEventListener("click", () => {
-      layout.classList.toggle("hide");
-      task_input.value = task.name;
-      isEdit = true;
-      editId = task.id;
-    });
-      
-      actions_btn.appendChild(trashIcon);
-      actions_btn.appendChild(editIcon);
-      const checkbox_taskName = document.createElement("div");
-      checkbox_taskName.classList = "text-container";
-      const box = document.createElement('div');
-      box.classList = 'checkbox-container';
-      const label = document.createElement("label");
-    label.classList = "checkbox-mark";
-    label.htmlFor = task.id;
-    box.appendChild(checkbox);
-    box.appendChild(label);
-    checkbox_taskName.appendChild(box);
-    checkbox_taskName.appendChild(p);
-    item.appendChild(checkbox_taskName);
-    item.appendChild(actions_btn);
-    todo_Items.appendChild(item);
-  });
-  }
-  showTasks();
+  showTasks(data);
 
 const trash_icon = document.getElementById("trash_icon");
 const apply_btn = document.querySelector(".apply");
@@ -71,7 +25,7 @@ apply_btn.addEventListener("click", () => {
   if (!isEdit) {
     let randomId = Math.random(9, 4);
     console.log(randomId);
-    tasks.push({ name: task_input.value, id: randomId, select: false });
+    data.push({ name: task_input.value, id: randomId, select: false });
     layout.classList.toggle("hide");
     showTasks();
   } else {
@@ -80,16 +34,16 @@ apply_btn.addEventListener("click", () => {
     isEdit = false;
   }
 });
-function deleteItem(id) {
-  const filterdTasks = tasks.filter((item) => {
+export function deleteItem(id) {
+  const filterdTasks = data.filter((item) => {
     return item.id != id;
   });
-  tasks = filterdTasks;
-  showTasks();
+  // tasks = filterdTasks;
+  showTasks(filterdTasks);
 }
 
 function editItem(id) {
-  const updatedTasks = tasks.map((item) => {
+  const updatedTasks = data.map((item) => {
     if (item.id == id) {
       return { ...item, name: task_input.value };
     } else {
@@ -97,25 +51,32 @@ function editItem(id) {
     }
   });
 
-  tasks = updatedTasks;
-  showTasks();
+  // tasks = updatedTasks;
+  showTasks(updatedTasks);
 }
-  showTasks();
 
+const searachinput = document.getElementById("search");
+searachinput.addEventListener("input", (e) => {
+  let updatedArray = data.filter((item) => {
+    let searchValue = searachinput.value.toLowerCase();
+    return item.name.toLowerCase().includes(searchValue);
+  });
+  showTasks(updatedArray);
+});
 
-  const searchInput = document.getElementById('search');
-  const searchBtn = document.getElementById('search-img');
-  searchBtn.addEventListener('click', ()=> {
-    let updatedArray = tasks.filter((item) => {
-      let searchValue = searchInput.value.toLowerCase()
-      // console.log(searchInput.value);
-    return item.name.toLowerCase().includes(searchInput.value);
-    
-  })
-  tasks=updatedArray; 
-   console.log(updatedArray,searchInput.value, 'after filter');
-  showTasks();
+const all_btn = document.querySelector(".all-btn");
+all_btn.addEventListener("click", () => {
+  showTasks(data);
+});
+// const searachBtn = document.getElementById("search-btn");
+// search using the search button
+// searachBtn.addEventListener("click", () => {
+//   let updatedArray = data.filter((item) => {
+//     let searchValue = searachinput.value.toLowerCase();
+//     return item.name.toLowerCase().includes(searchValue);
+//   });
+//   // tasks = updatedArray;
+//   showTasks(updatedArray);
+// });
 
-
-  })
-  
+// search while typing
