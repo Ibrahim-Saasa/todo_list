@@ -1,90 +1,177 @@
 :root {
-    --main-color: #6c63ff;
-    --background-color: #f7f7f7;
-  }
-  .search{
-    width: 20px;
-  }
-  body {
-    font-family: "Poppins";
-    background-color: var(--background-color);
-  }
-  .page-container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 150px;
-  }
-  .title {
-    font-size: 26px;
-  }
-  .search-input-container {
-    display: flex;
-    padding: 8px;
-    border-radius: 5px;
-    width: 400px;
-    border: 2px solid var(--main-color);
-  }
-  .search-input-container input {
-    background-color: transparent;
-    border: none;
-    width: 100%;
-  }
-  .search-input-container input:focus {
-    outline: none;
-  }
-  .todo-input {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 30px;
-  }
-  select {
-    background-color: var(--main-color);
-    color: white;
-    width: 70px;
-    font-size: 18px;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  #mode {
-    width: 40px;
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-    background-color: var(--main-color);
-    border-radius: 5px;
-  }
-  .todo-item{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 150px;
-    border-bottom: 1px solid var(--main-color);
-    margin-bottom: 5px;
-  }
-.text-container{
-    display: flex;
-    width: max-content;
-    gap: 5px;
+  --main-color: #6c63ff;
+  --background-color: #f7f7f7;
 }
 
-.todo-item input::after{
-    border: 1px solid var(--main-color);
+body {
+  font-family: "Poppins";
+  background-color: var(--background-color);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
-.add-btn{
-  color: #f7f7f7;
-  background-color: #6c63ff;
-  width: 50px;
-  height: 50px;
+h1 {
+  margin-top: 100px;
+  margin-bottom: 20px;
+  font-size: 3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--main-color);
+}
+#todo-list {
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--main-color);
+  padding-bottom: 5px;
+}
+.todo-item p {
+  margin-top: 25px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  width: 700px;
+  gap: 10px;
+}
+/* .search-input-container {
+  display: flex;
+  padding: 8px;
+  border-radius: 5px;
+  width: 400px;
+  border: 2px solid var(--main-color);
+}
+.search-input-container input {
+  background-color: transparent;
   border: none;
-  border-radius: 100%;
+  width: 100%;
 }
-.title{
-  font-size: 26px;
+.search-input-container input:focus {
+  outline: none;
+} */
+#todo-input {
+  box-sizing: border-box;
+  padding: 12px 20px;
+  margin-bottom: 40px;
+  /* display: flex; */
+  gap: 10px;
+  height: 30px;
+  border: 2px solid var(--main-color);
+  width: 100%;
+  background: none;
+  border-radius: 1000px;
+  font: inherit;
+  color: var(--main-color);
+  caret-color: var(--background-color);
 }
-.checkbox-container {
-  /* border: 2px solid red; */
+#todo-input:focus {
+  outline: none;
+}
+form {
+  position: relative;
+}
+#add-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--main-color);
+  color: white;
+  /* width: 50px; */
+  /* font-size: 18px; */
+  padding: 1px 15px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  /* margin-top: 25px; */
+}
+#theme {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--main-color);
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.todo {
+  margin-bottom: 10px;
+  padding: 0 16px;
+  background-color: var(--main-color);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.todo .todo-text {
+  padding: 15px;
+  padding-right: auto;
+  flex-grow: 1;
+  transition: 200ms ease;
+}
+.trash-icon {
+  padding: 3px;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.trash-icon:hover svg {
+  fill: var(--background-color);
+}
+svg {
+  width: 25px;
+  height: auto;
+  opacity: 0;
+}
+.custom_checkbox {
+  border: 2px solid var(--background-color);
+  border-radius: 50%;
+  min-height: 20px;
+  min-width: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: 200ms ease;
+  cursor: pointer;
+}
+input[type="checkbox"]:checked ~ .custom_checkbox {
+  background-color: var(--main-color);
+}
+input[type="checkbox"]:checked ~ .custom_checkbox svg {
+  background-color: var(--background-color);
+  opacity: 1;
+  border-radius: 50%;
+}
+input[type="checkbox"]:checked ~ .todo-text {
+  text-decoration: line-through;
+  color: darkgray;
+}
+input[type="checkbox"] {
+  display: none;
+}
+/* #mode {
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  background-color: var(--main-color);
+  border-radius: 5px;
+} */
+/* styling the checkbox */
+
+/* .checkbox-container {
+  border: 2px solid red;
   height: max-content;
   display: inline-block;
   position: relative;
@@ -92,9 +179,9 @@
 
 .checkbox-container input {
   opacity: 0;
-  /* display: none; */
-}
-.checkbox-mark {
+  display: none;
+} */
+/* .checkbox-mark {
   width: 20px;
   height: 20px;
   display: block;
@@ -118,38 +205,35 @@
   left: 9px;
   top: 26px;
   z-index: 1;
-}
+} */
 /* modal style */
 
-.layout {
-  /* display: none; */
+/* .layout {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(18, 13, 13, 0.797);
-}
-.hide {
-  display: none;
-}
-.content {
-  position: absolute;
-  left: 20%;
-  top: 20%;
-  width: 400px;
-  height: 300px;
-  background-color: white;
-}
-.all-btn {
-  background-color: var(--main-color);
-  color: white;
-  width: 70px;
-  font-size: 18px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-}
-button{
-  cursor: pointer;
+} */
+
+/* img {
+  width: 25px;
+} */
+@media (max-width: 500px) {
+  html {
+    font-size: 12pt;
+  }
+  #add-btn {
+    position: unset;
+    width: 100%;
+    /* margin-top: 10px; */
+    padding: 5px;
+    height: auto;
+  }
+  h1 {
+    margin-top: 50px;
+    font-size: 15vw;
+  }
 }

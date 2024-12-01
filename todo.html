@@ -1,55 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="./css/todo.css">
-    <title>todo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/" />
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
-    <link
+
+<head>
+  <meta charset="UTF-8" />
+  <link href="./css/todo.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet"
-  />
-    </head>
-    <body>
-        <div class="page-container">
-          <p class="title">TODO LIST</p>
-          <div class="todo-input">
-            <div class="search-input-container">
-              <input type="text" id="search"/>
-              <img src="./images/search.svg" class="search" id="search-img"/>
-            </div>
-            <button class="all-btn">All</button>
-            <div id="mode">
-              <img src="./images/moon.svg" />
-            </div>
-          </div>
-          <div class="todo-items"></div>
+    rel="stylesheet" />
+  <script src="https://kit.fontawesome.com/7adff71c6a.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo App</title>
+</head>
+
+<body>
+  <h1>Todo List</h1>
+  <button id="theme"><img src="./images/moon.svg" alt=""></button>
+  <div class="wrapper">
+    <form>
+      <input type="text" id="todo-input" placeholder="Your Task" autocomplete="off">
+      <button id="add-btn"><img src="./images/plus.png" alt="add"></button>
+
+    </form>
+    <ul id="todo-list">
+      <!-- <li class="todo">
+        <input type="checkbox" id="todo-1">
+        <label class="custom_checkbox" for="todo-1">
+          <svg fill="transparent" xml version="1.0" encoding="utf-8" width="800px" height="800px" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#000000" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </label>
+        <label for="todo-1" class="todo-text">
+          Go to Gym
+        </label>
+        <button class="trash-icon"><img src="./images/trash.svg" alt=""></button>
+      </li> -->
+    </ul>
+  </div>
+  <!-- <div class="page-container">
+    <p class="title">TODO LIST</p>
+    <div class="todo-input">
+      <div class="search-input-container">
+        <input type="text" id="search-input" />
+        <img src="./images/search.svg" id="search-btn" />
+      </div>
+      <button class="all-btn">All</button>
+
+      <div id="mode">
+        <img src="./images/moon.svg" />
+      </div>
+    </div>
+    <div class="todo-items"></div>
+  </div>
+  <button class="plus-btn">+</button>
+  <div class="layout hide">
+    <div class="content">
+      <p>NEW NOTE</p>
+      <input type="text" id="task_input" />
+      <div class="btn-container">
+        <button class="btn close">Cancel</button>
+        <button class="btn apply">Apply</button>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <div class="todo-item">
+      <div class="text-container">
+        <div class="checkbox-container">
+        <input type="checkbox" id="box"/>
+
+        <lable class="checkbox-mark" for="box"> </lable>
         </div>
-        <button class="add-btn"><img src="./images/plus.png"></button>
-        <div class="layout hide">
-          <div class="content">
-            <p>NEW NOTE</p>
-            <input type="text" id="task_input" />
-            <div class="btn-container">
-              <button class="btn close">Cancel</button>
-              <button class="btn apply">Apply</button>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="todo-item">
-          <div class="text-container">
-            <input type="checkbox" />
-          <p></p>
-          </div>
-          
-          <div class="actions-btn">
-            <img src="./images/edit.svg" />
-            <img src="./images/trash.svg" />
-          </div>
-        </div> -->
-        <script src="./js/todo.js" type="module"></script>
-      </body>
-    </html>
+      <p></p>
+      </div>
+      
+      <div class="actions-btn">
+        <img src="./images/edit.svg" />
+        <img src="./images/trash.svg" />
+      </div>
+    </div> -->
+
+  <script src="./js/todo.js" type="module"></script>
+</body>
+
+</html>

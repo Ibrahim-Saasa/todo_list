@@ -1,82 +1,59 @@
-let tasks = [
-    // { name: "Ahmed", id: 8488949, select: false },
-    // { name: "Take the trash out", id: 9082490, select: false },
-  ];
+const todoForm = document.querySelector("form");
+const todoInput = document.getElementById("todo-input");
+const todoListUL = document.getElementById("todo-list");
 
-  import { showTasks } from "./fun.js";
-  const todo_Items = document.querySelector(".todo-items");
-  const layout = document.querySelector(".layout");
-  const close_btn = document.querySelector(".close");
-  const plus_btn = document.querySelector(".add-btn");
-  const task_input = document.getElementById("task_input");
-  let isEdit = false;
-  let editId = null;
-  plus_btn.addEventListener("click", () => {
-    layout.classList.toggle("hide");
-  });
-  close_btn.addEventListener("click", () => {
-    layout.classList.toggle("hide");
-  });
-  showTasks(data);
+let allTodos = [];
 
-const trash_icon = document.getElementById("trash_icon");
-const apply_btn = document.querySelector(".apply");
-apply_btn.addEventListener("click", () => {
-  if (!isEdit) {
-    let randomId = Math.random(9, 4);
-    console.log(randomId);
-    data.push({ name: task_input.value, id: randomId, select: false });
-    layout.classList.toggle("hide");
-    showTasks();
-  } else {
-    editItem(editId);
-    layout.classList.toggle("hide");
-    isEdit = false;
-  }
+todoForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  addTodo();
 });
-export function deleteItem(id) {
-  const filterdTasks = data.filter((item) => {
-    return item.id != id;
-  });
-  // tasks = filterdTasks;
-  showTasks(filterdTasks);
-}
-
-function editItem(id) {
-  const updatedTasks = data.map((item) => {
-    if (item.id == id) {
-      return { ...item, name: task_input.value };
-    } else {
-      return item;
+function addTodo(todo, todoIndex) {
+  const todoText = todo || todoInput.value.trim();
+  if (todoText.length > 0) {
+    if (!todo) {
+      allTodos.push(todoText);
     }
-  });
-
-  // tasks = updatedTasks;
-  showTasks(updatedTasks);
+    updateTodoList(todo, todoIndex);
+    todoInput.value = "";
+  }
 }
-
-const searachinput = document.getElementById("search");
-searachinput.addEventListener("input", (e) => {
-  let updatedArray = data.filter((item) => {
-    let searchValue = searachinput.value.toLowerCase();
-    return item.name.toLowerCase().includes(searchValue);
+function updateTodoList(todo, todoIndex) {
+  todoListUL.innerHTML = "";
+  allTodos.forEach((todo, todoIndex) => {
+    let todoItem = createTodoItem(todo, todoIndex);
+    todoListUL.append(todoItem);
   });
-  showTasks(updatedArray);
-});
+}
+function createTodoItem(todo, todoIndex) {
+  const todoId = "todo-" + todoIndex;
+  const todoLI = document.createElement("li");
+  todoLI.className = "todo";
+  todoLI.innerHTML = ` <input type="checkbox" id="${todoId}">
+        <label class="custom_checkbox" for="${todoId}">
+          <svg fill="transparent" xml version="1.0" encoding="utf-8" width="800px" height="800px" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#000000" stroke-width="2" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </label>
+        <label for="${todoId}" class="todo-text">
+          ${todo}
+        </label>
+        <button class="trash-icon"><img src="./images/trash.svg" alt=""></button>`;
 
-const all_btn = document.querySelector(".all-btn");
-all_btn.addEventListener("click", () => {
-  showTasks(data);
-});
-// const searachBtn = document.getElementById("search-btn");
-// search using the search button
-// searachBtn.addEventListener("click", () => {
-//   let updatedArray = data.filter((item) => {
-//     let searchValue = searachinput.value.toLowerCase();
-//     return item.name.toLowerCase().includes(searchValue);
-//   });
-//   // tasks = updatedArray;
-//   showTasks(updatedArray);
-// });
-
-// search while typing
+  const deleteBtn = todoLI.querySelector(".trash-icon");
+  deleteBtn.addEventListener("click", () => {
+    deleteTodoItem(todoIndex);
+  });
+  return todoLI;
+}
+function deleteTodoItem(todoIndex) {
+  allTodos = allTodos.filter((_, i) => i !== todoIndex);
+  saveTodo();
+  updateTodoList();
+}
+function saveTodo() {
+  const todoJson = JSON.stringify(allTodos);
+  localStorage.setItem("todos", todoJson);
+}
